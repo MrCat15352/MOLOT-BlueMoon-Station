@@ -1,5 +1,4 @@
 import os
-import shutil
 
 COLOR_RESET = '\033[0m'
 COLOR_GREEN = '\033[32m'
@@ -46,12 +45,10 @@ os.mkdir(f"{script_dir}/{mod_name_lower}")
 for filename in os.listdir(f"{script_dir}/_example"):
     source = f"{script_dir}/_example/{filename}"
     destination = f"{script_dir}/{mod_name_lower}/{filename}"
-
     if os.path.isdir(source):
-        shutil.copytree(source, destination)
-    else:
-        with open(source, 'r', encoding="utf8") as src_file, open(destination, 'w', encoding="utf8") as dest_file:
-            dest_file.write(src_file.read().replace("EXAMPLE", mod_name_upper).replace("example", mod_name_lower))
+        continue
+    with open(source, 'r', encoding="utf8") as src_file, open(destination, 'w', encoding="utf8") as dest_file:
+        dest_file.write(src_file.read().replace("EXAMPLE", mod_name_upper).replace("example", mod_name_lower))
 
 
 # Rename files
